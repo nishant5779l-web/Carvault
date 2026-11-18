@@ -1,154 +1,78 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CARVAULT | Cars & Community</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080b12">
+<title>CARVAULT | Cars & Community</title>
 <style>
-:root{
-  --bg:#080b12;--panel:#101722;--panel2:#151f2d;
-  --blue:#278cff;--text:#f4f7fb;--muted:#8996a8;
-  --border:#243144;
-}
+:root{--bg:#080b12;--panel:#101722;--panel2:#151f2d;--blue:#278cff;--text:#f4f7fb;--muted:#8996a8;--border:#243144}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-font-family:Inter,Arial,sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-header{
- position:sticky;top:0;z-index:10;background:#080b12ed;
- backdrop-filter:blur(15px);border-bottom:1px solid var(--border);
- padding:15px 5%;display:flex;align-items:center;
- justify-content:space-between
-}
-.logo{font-size:23px;font-weight:900;letter-spacing:2px}
-.logo span{color:var(--blue)}
-.header-actions{display:flex;gap:10px;align-items:center}
-.avatar{
- width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#278cff,#16365c);
- display:grid;place-items:center;font-weight:bold
-}
-.container{max-width:1100px;margin:auto;padding:22px 16px 100px}
-.nav{
- display:flex;gap:8px;overflow-x:auto;padding-bottom:15px;
- border-bottom:1px solid var(--border)
-}
-.nav button{
- border:1px solid var(--border);background:var(--panel);
- color:var(--muted);padding:11px 17px;border-radius:10px;
- white-space:nowrap
-}
-.nav button.active{background:var(--blue);color:white;border-color:var(--blue)}
-.section{display:none;padding-top:22px}
-.section.active{display:block}
-h2{font-size:23px;margin:5px 0 18px}
-.muted{color:var(--muted)}
-.stories{display:flex;gap:15px;overflow-x:auto;padding:8px 0 20px}
-.story{min-width:68px;text-align:center;cursor:pointer}
-.story-ring{
- width:62px;height:62px;border-radius:50%;padding:3px;
- background:linear-gradient(45deg,#278cff,#8d50ff,#27d7ed);
- margin:auto auto 7px
-}
-.story-ring div{
- width:100%;height:100%;border-radius:50%;background:#172337;
- display:grid;place-items:center;border:3px solid var(--bg)
-}
-.story small{font-size:11px;color:var(--muted)}
-.card{
- background:var(--panel);border:1px solid var(--border);
- border-radius:16px;margin-bottom:17px;overflow:hidden
-}
-.post-head{display:flex;align-items:center;gap:11px;padding:14px}
-.post-head strong{display:block}
-.post-head small{color:var(--muted)}
-.post-image{
- width:100%;height:300px;object-fit:cover;display:block;
- background:#172337
-}
-.post-content{padding:14px}
-.post-actions{display:flex;gap:20px;padding:0 14px 14px}
-.action{
- border:0;background:none;color:var(--muted);
- padding:5px 0;font-size:15px
-}
-.action.liked{color:#ff5575}
-.post-text{line-height:1.5;margin:8px 0 12px}
-.btn{
- border:0;border-radius:10px;padding:11px 16px;
- color:white;background:var(--blue);font-weight:700
-}
+header{position:sticky;top:0;z-index:10;background:#080b12ed;border-bottom:1px solid var(--border);padding:14px 5%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px}.logo span{color:var(--blue)}
+.container{max-width:1100px;margin:auto;padding:20px 14px 100px}
+.nav{display:flex;gap:8px;overflow:auto;border-bottom:1px solid var(--border);padding-bottom:14px}
+.nav button,.bottom-nav button{border:1px solid var(--border);background:var(--panel);color:var(--muted);padding:10px 14px;border-radius:9px;white-space:nowrap}
+.nav button.active{background:var(--blue);color:white}
+.section{display:none;padding-top:20px}.section.active{display:block}
+h2{font-size:22px;margin:5px 0 17px}
+.muted,small{color:var(--muted)}
+.card,.form{background:var(--panel);border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.form{padding:15px;display:grid;gap:11px}
+input,textarea{width:100%;padding:12px;background:#0a111c;color:white;border:1px solid var(--border);border-radius:9px;outline:none}
+textarea{min-height:75px;resize:vertical}
+.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:11px 15px;font-weight:bold}
 .btn.secondary{background:var(--panel2);border:1px solid var(--border)}
 .btn.danger{background:#a82c42}
-.create-box{padding:15px;display:flex;gap:12px;align-items:center}
-.create-box button{flex:1;text-align:left}
-.grid{
- display:grid;grid-template-columns:repeat(3,1fr);gap:12px
-}
-.grid-item{
- min-height:150px;border-radius:12px;overflow:hidden;
- background:var(--panel2);position:relative
-}
-.grid-item img{width:100%;height:100%;object-fit:cover;position:absolute}
-.grid-item span{position:absolute;bottom:10px;left:10px;
- background:#0009;padding:5px 8px;border-radius:7px;font-size:12px}
-.market-card{display:grid;grid-template-columns:190px 1fr;gap:15px;padding:13px}
-.market-card img{width:100%;height:145px;object-fit:cover;border-radius:10px}
-.price{color:#42b7ff;font-weight:900;font-size:19px}
-.tag{font-size:11px;color:#9ecbff;background:#17314d;
- padding:5px 8px;border-radius:6px;display:inline-block}
-.form{
- display:grid;gap:12px;padding:18px;background:var(--panel);
- border:1px solid var(--border);border-radius:15px;margin-bottom:20px
-}
-input,textarea{
- width:100%;padding:13px;border:1px solid var(--border);
- background:#0a111c;color:white;border-radius:9px;outline:none
-}
-textarea{min-height:90px;resize:vertical}
-label{font-size:13px;color:var(--muted)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.empty{text-align:center;padding:40px 15px;color:var(--muted)}
-.profile-top{display:flex;align-items:center;gap:18px;padding:20px 0}
-.profile-photo{
- width:85px;height:85px;border-radius:50%;
- background:linear-gradient(135deg,#278cff,#152e4e);
- display:grid;place-items:center;font-size:28px;font-weight:900
-}
-.stats{display:flex;gap:25px;margin:18px 0}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.avatar{width:40px;height:40px;border-radius:50%;background:#173b64;display:grid;place-items:center;font-weight:bold;overflow:hidden;flex-shrink:0}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.post-head{display:flex;align-items:center;gap:10px;padding:13px}
+.post-body{padding:12px;line-height:1.5}
+.post-image{width:100%;max-height:430px;object-fit:cover;background:#172337}
+.actions{display:flex;gap:18px;padding:0 13px 13px;flex-wrap:wrap}
+.action{background:none;border:0;color:var(--muted);padding:5px 0}
+.story-list{display:flex;gap:14px;overflow:auto;padding:8px 0 20px}
+.story{min-width:68px;text-align:center;cursor:pointer}
+.story-ring{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#278cff,#a34dff);margin:auto auto 6px}
+.story-inner{height:100%;border-radius:50%;background:#172337;display:grid;place-items:center;border:3px solid var(--bg)}
+.story small{font-size:11px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.grid-item{background:var(--panel2);border-radius:10px;padding:10px;min-height:90px;overflow-wrap:anywhere}
+.market-card{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:12px}
+.market-card img{width:100%;height:115px;object-fit:cover;border-radius:9px;background:#172337}
+.price{color:#55b8ff;font-weight:900;font-size:19px}
+.tag{font-size:11px;color:#9ecbff;background:#17314d;padding:5px 8px;border-radius:6px}
+.empty{text-align:center;padding:30px;color:var(--muted)}
+.profile-top{display:flex;gap:15px;align-items:center;padding:15px 0}
+.profile-photo{width:80px;height:80px;border-radius:50%;background:#173b64;overflow:hidden;display:grid;place-items:center;font-size:25px}
+.profile-photo img{width:100%;height:100%;object-fit:cover}
+.stats{display:flex;gap:24px;margin:15px 0}
 .stats strong{display:block;font-size:19px}
-.bottom-nav{
- display:none;position:fixed;bottom:0;left:0;right:0;
- background:#0d1420f5;border-top:1px solid var(--border);
- padding:10px 4px;justify-content:space-around;z-index:20
-}
-.bottom-nav button{background:none;border:0;color:var(--muted);font-size:11px}
-.bottom-nav button.active{color:#55a8ff}
-.modal{
- display:none;position:fixed;inset:0;background:#000b;
- z-index:50;align-items:center;justify-content:center;padding:15px
-}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:30;align-items:center;justify-content:center;padding:14px}
 .modal.show{display:flex}
-.modal-box{
- background:var(--panel);border:1px solid var(--border);
- border-radius:16px;padding:20px;width:100%;max-width:480px;
- max-height:90vh;overflow:auto
-}
+.modal-box{width:100%;max-width:480px;max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:17px}
 .modal-head{display:flex;justify-content:space-between;align-items:center}
-.close{background:none;color:white;border:0;font-size:25px}
-footer{text-align:center;color:var(--muted);padding:25px;font-size:12px}
+.close{border:0;background:none;color:white;font-size:25px}
+#authScreen{max-width:440px;margin:50px auto;padding:18px}
+#app{display:none}
+.chat-list button{width:100%;text-align:left;margin:4px 0}
+.message{padding:9px 12px;margin:7px 0;border-radius:12px;max-width:85%;background:#1a293b;overflow-wrap:anywhere}
+.message.mine{background:#174d83;margin-left:auto}
+#chatMessages{height:300px;overflow:auto;padding:10px;background:#0b111b;border-radius:10px;margin:10px 0}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#0d1420f5;border-top:1px solid var(--border);padding:8px 2px;justify-content:space-around;z-index:20}
+.bottom-nav button{border:0;background:none;padding:5px;font-size:11px}
+.bottom-nav button.active{color:#55a8ff}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:12px}
 @media(max-width:650px){
- header{padding:13px 15px}
- .container{padding:15px 12px 90px}
- .nav{display:none}
- .bottom-nav{display:flex}
- .market-card{grid-template-columns:115px 1fr;gap:10px}
- .market-card img{height:125px}
- .grid{gap:6px}
- .grid-item{min-height:115px}
- .post-image{height:250px}
+ header{padding:12px}.container{padding:14px 11px 90px}.nav{display:none}
+ .bottom-nav{display:flex}.market-card{grid-template-columns:105px 1fr}
+ .market-card img{height:110px}.grid{gap:6px}.grid-item{padding:7px}
 }
 </style>
 </head>
@@ -156,326 +80,528 @@ footer{text-align:center;color:var(--muted);padding:25px;font-size:12px}
 
 <header>
  <div class="logo">CAR<span>VAULT</span></div>
- <div class="header-actions">
-  <button class="btn secondary" onclick="openCreate()">＋ Create</button>
-  <div class="avatar" id="headerAvatar">C</div>
+ <div class="row">
+  <span id="headerName" class="muted"></span>
+  <button class="btn secondary" onclick="logout()">Logout</button>
  </div>
 </header>
 
+<div id="authScreen">
+ <h1 class="logo">CAR<span>VAULT</span></h1>
+ <p class="muted">Cars. Community. Connection.</p>
+ <div class="form">
+  <h2 id="authTitle">Create your account</h2>
+  <input id="authName" placeholder="Display name">
+  <input id="authUsername" placeholder="Username (e.g. carlover123)">
+  <input id="authEmail" type="email" placeholder="Email address">
+  <input id="authPassword" type="password" placeholder="Password (at least 6 characters)">
+  <button class="btn" id="authButton" onclick="authenticate()">Create Account</button>
+  <button class="btn secondary" onclick="toggleAuth()" id="authToggle">Already have an account? Login</button>
+  <p class="muted" id="authMessage"></p>
+ </div>
+</div>
+
+<div id="app">
 <main class="container">
- <div class="nav" id="topNav">
+ <div class="nav">
   <button class="active" onclick="showTab('home',this)">⌂ Home</button>
   <button onclick="showTab('reels',this)">▶ Reels</button>
   <button onclick="showTab('explore',this)">⌕ Explore</button>
   <button onclick="showTab('market',this)">🚘 Car Market</button>
   <button onclick="showTab('messages',this)">✉ Messages</button>
+  <button onclick="showTab('notifications',this)">♧ Alerts</button>
   <button onclick="showTab('profile',this)">◉ Profile</button>
  </div>
 
- <!-- HOME -->
  <section class="section active" id="home">
   <h2>Stories</h2>
-  <div class="stories" id="stories"></div>
-
-  <div class="card create-box">
-   <div class="avatar">C</div>
-   <button class="btn secondary" onclick="openCreate()">Share something with the CARVAULT community...</button>
+  <div class="story-list" id="stories"></div>
+  <div class="form">
+   <textarea id="postText" placeholder="Share something with CARVAULT..."></textarea>
+   <input id="postUrl" placeholder="Optional image URL">
+   <button class="btn" onclick="createPost()">Publish Post</button>
   </div>
   <div id="feed"></div>
  </section>
 
- <!-- REELS -->
  <section class="section" id="reels">
   <h2>Discover Reels</h2>
-  <p class="muted">Short videos from the automotive community.</p>
+  <p class="muted">Video URLs can be shared here. Direct gallery uploads are not connected yet.</p>
   <div class="form">
-   <label>Share a video URL</label>
-   <input id="reelUrl" placeholder="Paste a public video URL">
-   <input id="reelCaption" placeholder="Write a reel caption">
-   <button class="btn" onclick="addReel()">Publish Reel</button>
+   <input id="reelUrl" placeholder="Public video URL">
+   <input id="reelCaption" placeholder="Reel caption">
+   <button class="btn" onclick="createReel()">Publish Reel</button>
   </div>
-  <div id="reelGrid" class="grid"></div>
+  <div id="reelFeed"></div>
  </section>
 
- <!-- EXPLORE -->
  <section class="section" id="explore">
-  <h2>Explore CARVAULT</h2>
-  <input id="search" placeholder="Search cars, posts or creators..." oninput="searchAll()">
-  <div style="height:18px"></div>
-  <div id="exploreGrid" class="grid"></div>
-  <div id="searchResults"></div>
+  <h2>Explore members</h2>
+  <input id="memberSearch" placeholder="Search username..." oninput="searchMembers()">
+  <div id="memberResults"></div>
  </section>
 
- <!-- MARKET -->
  <section class="section" id="market">
   <h2>CAR MARKET</h2>
-  <p class="muted">Discover cars. Connect with sellers.</p>
-  <button class="btn" onclick="openListing()">＋ Sell Your Car</button>
-  <div style="height:18px"></div>
+  <p class="muted">Discover cars and connect through CARVAULT.</p>
   <div class="form">
-   <input id="marketSearch" placeholder="Search car name..." oninput="renderMarket()">
+   <input id="carName" placeholder="Car name / model">
+   <input id="carYear" placeholder="Model year">
+   <input id="carKm" type="number" placeholder="Kilometres driven">
+   <input id="carSpecs" placeholder="Specifications">
+   <input id="carPrice" type="number" placeholder="Price in ₹">
+   <input id="carPhoto" placeholder="Car photo URL (optional)">
+   <textarea id="carDescription" placeholder="Description"></textarea>
+   <button class="btn" onclick="createListing()">Publish Car Listing</button>
   </div>
-  <div id="marketListings"></div>
+  <input id="carSearch" placeholder="Search car listings..." oninput="loadListings()">
+  <div id="listings"></div>
  </section>
 
- <!-- MESSAGES -->
  <section class="section" id="messages">
   <h2>Private Messages</h2>
-  <div class="card empty">
-   <div style="font-size:40px">✉</div>
-   <h3>CARVAULT Chat</h3>
-   <p>Private one-to-one messaging will be activated after Firebase setup.</p>
-   <p class="muted">Audio and video calls will require secure WebRTC signaling and call acceptance.</p>
+  <div class="form">
+   <input id="chatUsername" placeholder="Enter member username">
+   <button class="btn" onclick="startChat()">Start Conversation</button>
   </div>
- </section>
-
- <!-- PROFILE -->
- <section class="section" id="profile">
-  <div class="profile-top">
-   <div class="profile-photo" id="profileAvatar">C</div>
-   <div>
-    <h2 id="profileName">CARVAULT Member</h2>
-    <span class="muted">@carvault_member</span>
+  <div class="chat-list" id="chatList"></div>
+  <div id="chatArea" style="display:none" class="card" >
+   <div class="post-head">
+    <strong id="chatTitle">Conversation</strong>
+    <button class="btn secondary" onclick="closeChat()">Close</button>
+   </div>
+   <div id="chatMessages"></div>
+   <div class="row" style="padding:10px">
+    <input id="messageText" placeholder="Write a message..." style="flex:1">
+    <button class="btn" onclick="sendMessage()">Send</button>
    </div>
   </div>
-  <p id="profileBio" class="muted">Welcome to the CARVAULT community.</p>
-  <div class="stats">
-   <div><strong id="postCount">0</strong><span class="muted">Posts</span></div>
-   <div><strong>0</strong><span class="muted">Followers</span></div>
-   <div><strong>0</strong><span class="muted">Following</span></div>
+  <p class="muted">Only send messages to people you know and trust. You can report inappropriate content.</p>
+ </section>
+
+ <section class="section" id="notifications">
+  <h2>Notifications</h2>
+  <div id="alerts"></div>
+ </section>
+
+ <section class="section" id="profile">
+  <div class="profile-top">
+   <div class="profile-photo" id="profilePhoto">C</div>
+   <div><h2 id="profileName">Member</h2><span class="muted" id="profileUsername"></span></div>
   </div>
-  <button class="btn secondary" onclick="editProfile()">Edit Profile</button>
-  <h2 style="margin-top:25px">My Posts</h2>
-  <div id="myPosts" class="grid"></div>
+  <p id="profileBio" class="muted"></p>
+  <div class="stats">
+   <div><strong id="postCount">0</strong><small>Posts</small></div>
+   <div><strong id="followerCount">0</strong><small>Followers</small></div>
+   <div><strong id="followingCount">0</strong><small>Following</small></div>
+  </div>
+  <div class="form">
+   <input id="editName" placeholder="Display name">
+   <input id="editUsername" placeholder="Username">
+   <input id="editBio" placeholder="Bio">
+   <input id="editPhoto" placeholder="Profile photo URL">
+   <button class="btn" onclick="saveProfile()">Save Profile</button>
+  </div>
+  <h2>My Posts</h2>
+  <div id="myPosts"></div>
+  <button class="btn danger" onclick="logout()">Logout</button>
  </section>
 </main>
+</div>
 
-<div class="bottom-nav" id="bottomNav">
+<div class="bottom-nav">
  <button class="active" onclick="showTab('home',this)">⌂<br>Home</button>
  <button onclick="showTab('reels',this)">▶<br>Reels</button>
- <button onclick="showTab('explore',this)">⌕<br>Explore</button>
  <button onclick="showTab('market',this)">🚘<br>Market</button>
+ <button onclick="showTab('messages',this)">✉<br>Messages</button>
  <button onclick="showTab('profile',this)">◉<br>Profile</button>
 </div>
 
-<!-- CREATE POST MODAL -->
-<div class="modal" id="postModal">
- <div class="modal-box">
-  <div class="modal-head"><h2>Create Post</h2><button class="close" onclick="closeModal('postModal')">×</button></div>
-  <div class="form">
-   <input id="postImage" placeholder="Image URL (optional)">
-   <textarea id="postCaption" placeholder="What's happening?"></textarea>
-   <button class="btn" onclick="publishPost()">Publish Post</button>
-  </div>
- </div>
-</div>
-
-<!-- LISTING MODAL -->
-<div class="modal" id="listingModal">
- <div class="modal-box">
-  <div class="modal-head"><h2>List Your Car</h2><button class="close" onclick="closeModal('listingModal')">×</button></div>
-  <div class="form">
-   <input id="carName" placeholder="Car name *">
-   <input id="carImage" placeholder="Car photo URL">
-   <div class="form-row">
-    <input id="carKm" type="number" placeholder="KM driven">
-    <input id="carYear" placeholder="Model year">
-   </div>
-   <input id="carSpecs" placeholder="Specifications">
-   <div class="form-row">
-    <input id="carPrice" placeholder="Price in ₹">
-    <input id="gamePrice" placeholder="Game money price">
-   </div>
-   <input id="sellerContact" placeholder="Contact information (optional)">
-   <button class="btn" onclick="publishListing()">Publish Listing</button>
-  </div>
- </div>
-</div>
-
-<!-- STORY MODAL -->
 <div class="modal" id="storyModal">
  <div class="modal-box">
-  <div class="modal-head"><h2 id="storyTitle">Story</h2><button class="close" onclick="closeModal('storyModal')">×</button></div>
-  <div id="storyContent" class="empty"></div>
+  <div class="modal-head"><h2 id="storyHeading">Story</h2><button class="close" onclick="hideModal('storyModal')">×</button></div>
+  <div id="storyText" class="empty"></div>
  </div>
 </div>
 
 <footer>CARVAULT © 2026 · Cars. Community. Connection.</footer>
 
-<script>
-const KEY="carvault_demo_v1";
-const now=()=>Date.now();
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-let data=JSON.parse(localStorage.getItem(KEY)||"null")||{
- name:"CARVAULT Member",
- bio:"Welcome to the CARVAULT community.",
- posts:[
-  {id:1,name:"CARVAULT",caption:"Welcome to CARVAULT! Your automotive community starts here. 🚘",image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1000",likes:12,liked:false},
-  {id:2,name:"CARVAULT",caption:"Discover amazing machines and connect with car lovers.",image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000",likes:8,liked:false}
- ],
- listings:[
-  {id:1,name:"Luxury Sports Car",image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800",km:"12,000",year:"2023",specs:"Automatic transmission",price:"45,00,000",game:"",contact:"Demo listing"},
-  {id:2,name:"Premium SUV",image:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800",km:"25,000",year:"2022",specs:"SUV · Premium edition",price:"28,00,000",game:"",contact:"Demo listing"}
- ],
- stories:[],
- reels:[]
+<script>
+// YOUR CARVAULT FIREBASE PROJECT
+const firebaseConfig = {
+ apiKey: "AIzaSyCzQXkLlXFnM2QujlJODiqEeJ2RuMf9AmA",
+ authDomain: "carvault-459ec.firebaseapp.com",
+ projectId: "carvault-459ec",
+ storageBucket: "carvault-459ec.firebasestorage.app",
+ messagingSenderId: "563242797837",
+ appId: "1:563242797837:web:983dc5cac97c8eb6f6fe44",
+ measurementId: "G-NH2X058HK0"
 };
 
-function save(){localStorage.setItem(KEY,JSON.stringify(data))}
-function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function showTab(id,btn){
- document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll(".nav button,.bottom-nav button").forEach(x=>x.classList.remove("active"));
- document.querySelectorAll(`[onclick*="showTab('${id}'"]`).forEach(x=>x.classList.add("active"));
- window.scrollTo({top:0,behavior:"smooth"});
-}
-function openCreate(){document.getElementById("postModal").classList.add("show")}
-function openListing(){document.getElementById("listingModal").classList.add("show")}
-function closeModal(id){document.getElementById(id).classList.remove("show")}
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let me=null, myProfile=null, currentChat=null;
+let stops=[];
+let loginMode=false;
 
-function publishPost(){
- const caption=document.getElementById("postCaption").value.trim();
- const image=document.getElementById("postImage").value.trim();
- if(!caption&&!image)return alert("Add a caption or image first.");
- data.posts.unshift({id:now(),name:data.name,caption,image,likes:0,liked:false});
- save();closeModal("postModal");
- document.getElementById("postCaption").value="";
- document.getElementById("postImage").value="";
- render();showTab("home");
+function listen(q,callback){
+ const unsub=q.onSnapshot(callback,error=>console.error(error));
+ stops.push(unsub);
+ return unsub;
 }
-function toggleLike(id){
- const p=data.posts.find(x=>x.id===id);if(!p)return;
- p.liked=!p.liked;p.likes+=p.liked?1:-1;save();render();
+function clearListeners(){stops.forEach(fn=>fn());stops=[]}
+function msg(text){alert(text)}
+function showTab(id,btn){
+ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+ $(id).classList.add("active");
+ document.querySelectorAll(".nav button,.bottom-nav button").forEach(b=>b.classList.remove("active"));
+ document.querySelectorAll(`[onclick*="showTab('${id}'"]`).forEach(b=>b.classList.add("active"));
+ if(id==="messages")loadChats();
+ if(id==="notifications")loadNotifications();
+ if(id==="market")loadListings();
+ if(id==="profile")loadProfile();
+ window.scrollTo(0,0);
 }
-function renderFeed(){
- document.getElementById("feed").innerHTML=data.posts.map(p=>`
- <article class="card">
-  <div class="post-head"><div class="avatar">${safe(p.name[0]||"C")}</div>
-   <div><strong>${safe(p.name)}</strong><small>CARVAULT community</small></div>
-  </div>
-  ${p.image?`<img class="post-image" src="${safe(p.image)}" alt="Post image" onerror="this.style.display='none'">`:""}
-  <div class="post-content"><div class="post-text">${safe(p.caption)}</div></div>
-  <div class="post-actions">
-   <button class="action ${p.liked?"liked":""}" onclick="toggleLike(${p.id})">♥ ${p.likes} Likes</button>
-   <button class="action" onclick="commentPost(${p.id})">◯ Comment</button>
-   <button class="action" onclick="sharePost(${p.id})">↗ Share</button>
-  </div>
- </article>`).join("");
+function toggleAuth(){
+ loginMode=!loginMode;
+ $("authTitle").textContent=loginMode?"Login":"Create your account";
+ $("authButton").textContent=loginMode?"Login":"Create Account";
+ $("authToggle").textContent=loginMode?"Need an account? Sign up":"Already have an account? Login";
+ $("authName").style.display=loginMode?"none":"block";
+ $("authUsername").style.display=loginMode?"none":"block";
+ $("authMessage").textContent="";
 }
-function commentPost(id){
- const comment=prompt("Write your comment:");
- if(comment&&comment.trim()){
-  alert("Demo: comment saved only for this interaction. Firebase will enable shared comments.");
- }
+async function authenticate(){
+ const email=$("authEmail").value.trim();
+ const password=$("authPassword").value;
+ try{
+  if(loginMode){await auth.signInWithEmailAndPassword(email,password);}
+  else{
+   const name=$("authName").value.trim();
+   const username=$("authUsername").value.trim().toLowerCase().replace(/^@/,"");
+   if(!name||!username||!email||password.length<6)return msg("Enter your name, username, email and a password of at least 6 characters.");
+   if(!/^[a-z0-9_]{3,20}$/.test(username))return msg("Username must be 3–20 characters using letters, numbers or underscores.");
+   const cred=await auth.createUserWithEmailAndPassword(email,password);
+   await db.collection("users").doc(cred.user.uid).set({
+    uid:cred.user.uid,displayName:name,username,bio:"Welcome to CARVAULT!",photoURL:"",createdAt:Date.now(),updatedAt:Date.now()
+   });
+  }
+ }catch(e){msg(e.message)}
 }
-function sharePost(id){
- const p=data.posts.find(x=>x.id===id);
- if(navigator.share)navigator.share({title:"CARVAULT",text:p.caption}).catch(()=>{});
- else alert("Share CARVAULT with your friends!");
+function logout(){auth.signOut()}
+auth.onAuthStateChanged(async user=>{
+ clearListeners();me=user;currentChat=null;
+ if(!user){$("app").style.display="none";$("authScreen").style.display="block";return}
+ try{
+  const ref=db.collection("users").doc(user.uid);
+  let snap=await ref.get();
+  if(!snap.exists){
+   await ref.set({uid:user.uid,displayName:"CARVAULT Member",username:"member_"+user.uid.slice(0,7),bio:"",photoURL:"",createdAt:Date.now(),updatedAt:Date.now()});
+   snap=await ref.get();
+  }
+  myProfile=snap.data();
+  $("authScreen").style.display="none";$("app").style.display="block";
+  $("headerName").textContent=myProfile.displayName;
+  startApp();
+ }catch(e){msg("Profile loading error: "+e.message)}
+});
+function startApp(){
+ loadFeed();loadStories();loadReels();loadProfile();loadChats();loadListings();
 }
-function addStory(){
- const text=prompt("Write your story:");
- if(!text)return;
- data.stories.unshift({name:data.name,text,expires:now()+86400000});
- save();renderStories();
+function avatarHTML(p){
+ return `<div class="avatar">${p.photoURL?`<img src="${esc(p.photoURL)}">`:esc((p.displayName||"C")[0].toUpperCase())}</div>`;
 }
-function renderStories(){
- data.stories=data.stories.filter(s=>s.expires>now());
- const items=[{name:"Your Story",text:"",own:true},...data.stories];
- document.getElementById("stories").innerHTML=items.map((s,i)=>`
- <div class="story" onclick="${s.own?"addStory()":`viewStory(${i-1})`}">
-  <div class="story-ring"><div>${s.own?"＋":safe(s.name[0]||"C")}</div></div>
-  <small>${safe(s.name)}</small>
- </div>`).join("");
+
+// POSTS
+async function createPost(){
+ const caption=$("postText").value.trim(),image=$("postUrl").value.trim();
+ if(!caption&&!image)return msg("Write something or add an image URL.");
+ try{
+  await db.collection("posts").add({ownerUid:me.uid,ownerName:myProfile.displayName,caption,image,createdAt:Date.now()});
+  $("postText").value="";$("postUrl").value="";
+ }catch(e){msg(e.message)}
 }
-function viewStory(i){
- const s=data.stories[i];if(!s)return;
- document.getElementById("storyTitle").textContent=s.name+"'s Story";
- document.getElementById("storyContent").textContent=s.text;
- document.getElementById("storyModal").classList.add("show");
-}
-function publishListing(){
- const name=document.getElementById("carName").value.trim();
- const price=document.getElementById("carPrice").value.trim();
- const game=document.getElementById("gamePrice").value.trim();
- if(!name||(!price&&!game))return alert("Enter a car name and at least one price.");
- data.listings.unshift({
-  id:now(),name,image:document.getElementById("carImage").value.trim(),
-  km:document.getElementById("carKm").value,
-  year:document.getElementById("carYear").value,
-  specs:document.getElementById("carSpecs").value,
-  price,game,contact:document.getElementById("sellerContact").value
+function loadFeed(){
+ listen(db.collection("posts").orderBy("createdAt","desc").limit(50),snap=>{
+  $("feed").innerHTML=snap.empty?'<div class="empty">No posts yet. Be the first to post!</div>':snap.docs.map(d=>{
+   const p=d.data();
+   return `<article class="card">
+    <div class="post-head">${avatarHTML({displayName:p.ownerName})}
+     <div><strong>${esc(p.ownerName)}</strong><br><small>@${esc(p.ownerUid.slice(0,8))}</small></div>
+    </div>
+    ${p.image?`<img class="post-image" src="${esc(p.image)}" alt="Post image" onerror="this.style.display='none'">`:""}
+    <div class="post-body">${esc(p.caption)}</div>
+    <div class="actions">
+     <button class="action" onclick="toggleLike('${d.id}')">♥ Like</button>
+     <button class="action" onclick="commentOn('${d.id}')">◯ Comment</button>
+     <button class="action" onclick="reportItem('post','${d.id}')">⚑ Report</button>
+     ${p.ownerUid===me.uid?`<button class="action" onclick="deletePost('${d.id}')">Delete</button>`:""}
+    </div>
+    <div id="comments-${d.id}" class="post-body"></div>
+   </article>`;
+  }).join("");
+  snap.docs.forEach(d=>loadComments(d.id));
  });
- save();closeModal("listingModal");renderMarket();
 }
-function renderMarket(){
- const q=(document.getElementById("marketSearch")?.value||"").toLowerCase();
- const results=data.listings.filter(x=>x.name.toLowerCase().includes(q));
- document.getElementById("marketListings").innerHTML=results.map(x=>`
- <div class="card market-card">
-  <img src="${safe(x.image||"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500")}" alt="${safe(x.name)}">
-  <div>
-   <span class="tag">CAR MARKET</span>
-   <h3>${safe(x.name)}</h3>
-   <div class="price">${x.price?"₹"+safe(x.price):""}</div>
-   ${x.game?`<p>${safe(x.game)} Game Money</p>`:""}
-   <p class="muted">${safe(x.year||"")} · ${safe(x.km||"")} KM</p>
-   <small class="muted">${safe(x.specs||"")}</small><br><br>
-   <button class="btn secondary" onclick="contactSeller(${x.id})">View Details</button>
-  </div>
- </div>`).join("")||'<div class="empty">No cars found.</div>';
+async function toggleLike(postId){
+ const ref=db.collection("posts").doc(postId).collection("likes").doc(me.uid);
+ try{
+  const s=await ref.get();
+  if(s.exists)await ref.delete();else await ref.set({uid:me.uid,createdAt:Date.now()});
+ }catch(e){msg(e.message)}
 }
-function contactSeller(id){
- const x=data.listings.find(v=>v.id===id);if(!x)return;
- alert("Car: "+x.name+"\nYear: "+(x.year||"Not provided")+"\nKM: "+(x.km||"Not provided")+"\nSpecifications: "+(x.specs||"Not provided")+"\nPrice: "+(x.price?"₹"+x.price:"Not provided")+"\nGame price: "+(x.game||"Not provided")+"\nSeller: "+(x.contact||"Contact not provided"));
+async function commentOn(postId){
+ const text=prompt("Write a comment:");
+ if(!text||!text.trim())return;
+ try{await db.collection("posts").doc(postId).collection("comments").add({ownerUid:me.uid,text:text.trim(),createdAt:Date.now()});}
+ catch(e){msg(e.message)}
 }
-function addReel(){
- const url=document.getElementById("reelUrl").value.trim();
- const caption=document.getElementById("reelCaption").value.trim();
- if(!url)return alert("Enter a video URL.");
- data.reels.unshift({url,caption});save();renderReels();
- document.getElementById("reelUrl").value="";
- document.getElementById("reelCaption").value="";
+function loadComments(postId){
+ listen(db.collection("posts").doc(postId).collection("comments").orderBy("createdAt","asc").limit(20),snap=>{
+  const el=$("comments-"+postId);if(!el)return;
+  el.innerHTML=snap.docs.map(d=>`<p><strong>${esc(d.data().ownerUid.slice(0,8))}:</strong> ${esc(d.data().text)}</p>`).join("");
+ });
 }
-function renderReels(){
- document.getElementById("reelGrid").innerHTML=data.reels.map(r=>`
- <div class="grid-item"><video src="${safe(r.url)}" controls style="width:100%;height:100%;object-fit:cover"></video>
- <span>${safe(r.caption)}</span></div>`).join("")||'<div class="empty">Your reels will appear here.</div>';
+async function deletePost(id){
+ if(!confirm("Delete this post?"))return;
+ try{await db.collection("posts").doc(id).delete()}catch(e){msg(e.message)}
 }
-function searchAll(){
- const q=document.getElementById("search").value.toLowerCase();
- const results=[
-  ...data.posts.filter(p=>p.caption.toLowerCase().includes(q)).map(p=>({title:"Post",text:p.caption})),
-  ...data.listings.filter(x=>x.name.toLowerCase().includes(q)).map(x=>({title:"Car",text:x.name}))
- ];
- document.getElementById("searchResults").innerHTML=results.map(x=>`
- <div class="card post-content"><strong>${safe(x.title)}</strong><p>${safe(x.text)}</p></div>`).join("")||'<p class="muted">No matching results.</p>';
+
+// STORIES
+async function addStory(){
+ const text=prompt("Write your story (text only):");
+ if(!text||!text.trim())return;
+ try{
+  await db.collection("stories").add({ownerUid:me.uid,ownerName:myProfile.displayName,text:text.trim(),createdAt:Date.now(),expiresAt:Date.now()+86400000});
+ }catch(e){msg(e.message)}
 }
-function editProfile(){
- const name=prompt("Your display name:",data.name);
- if(name===null||!name.trim())return;
- const bio=prompt("Your bio:",data.bio);
- data.name=name.trim();if(bio!==null)data.bio=bio;
- save();render();
+function loadStories(){
+ listen(db.collection("stories").where("expiresAt",">",Date.now()).orderBy("expiresAt").limit(50),snap=>{
+  const items=[`<div class="story" onclick="addStory()"><div class="story-ring"><div class="story-inner">＋</div></div><small>Your Story</small></div>`];
+  snap.forEach(d=>{const s=d.data();items.push(`<div class="story" onclick="viewStory('${d.id}')"><div class="story-ring"><div class="story-inner">${esc((s.ownerName||"C")[0])}</div></div><small>${esc(s.ownerName)}</small></div>`)});
+  $("stories").innerHTML=items.join("");
+ });
 }
-function renderProfile(){
- document.getElementById("profileName").textContent=data.name;
- document.getElementById("profileBio").textContent=data.bio;
- document.getElementById("headerAvatar").textContent=data.name[0].toUpperCase();
- document.getElementById("profileAvatar").textContent=data.name[0].toUpperCase();
- document.getElementById("postCount").textContent=data.posts.length;
- document.getElementById("myPosts").innerHTML=data.posts.filter(p=>p.name===data.name).map(p=>`
- <div class="grid-item">${p.image?`<img src="${safe(p.image)}">`:""}<span>${safe(p.caption)}</span></div>`).join("")||'<p class="muted">No posts yet.</p>';
+async function viewStory(id){
+ try{
+  const s=await db.collection("stories").doc(id).get();
+  if(!s.exists)return;
+  $("storyHeading").textContent=s.data().ownerName+"'s Story";
+  $("storyText").textContent=s.data().text;
+  $("storyModal").classList.add("show");
+ }catch(e){msg(e.message)}
 }
-function renderExplore(){
- document.getElementById("exploreGrid").innerHTML=data.listings.slice(0,9).map(x=>`
- <div class="grid-item"><img src="${safe(x.image||"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500")}"><span>${safe(x.name)}</span></div>`).join("");
+function hideModal(id){$(id).classList.remove("show")}
+
+// REELS (URL-based until media storage is connected)
+async function createReel(){
+ const url=$("reelUrl").value.trim(),caption=$("reelCaption").value.trim();
+ if(!url||!/^https?:\/\//i.test(url))return msg("Enter a valid public video URL.");
+ try{
+  await db.collection("posts").add({ownerUid:me.uid,ownerName:myProfile.displayName,caption:"REEL: "+caption,image:"",videoUrl:url,createdAt:Date.now(),isReel:true});
+  $("reelUrl").value="";$("reelCaption").value="";
+ }catch(e){msg(e.message)}
 }
-function render(){
- renderFeed();renderStories();renderMarket();renderReels();renderProfile();renderExplore();
+function loadReels(){
+ listen(db.collection("posts").where("isReel","==",true).orderBy("createdAt","desc").limit(30),snap=>{
+  $("reelFeed").innerHTML=snap.empty?'<div class="empty">No reels yet.</div>':snap.docs.map(d=>{
+   const r=d.data();
+   return `<div class="card post-body"><strong>${esc(r.ownerName)}</strong><p>${esc(r.caption)}</p><a href="${esc(r.videoUrl)}" target="_blank" rel="noopener">Open video</a></div>`;
+  }).join("");
+ });
 }
-render();
+
+// PROFILE
+async function loadProfile(){
+ const s=await db.collection("users").doc(me.uid).get();
+ if(!s.exists)return;
+ myProfile=s.data();
+ $("headerName").textContent=myProfile.displayName;
+ $("profileName").textContent=myProfile.displayName;
+ $("profileUsername").textContent="@"+myProfile.username+" · ID "+me.uid.slice(0,8);
+ $("profileBio").textContent=myProfile.bio||"";
+ $("profilePhoto").innerHTML=myProfile.photoURL?`<img src="${esc(myProfile.photoURL)}">`:esc((myProfile.displayName||"C")[0]);
+ $("editName").value=myProfile.displayName||"";
+ $("editUsername").value=myProfile.username||"";
+ $("editBio").value=myProfile.bio||"";
+ $("editPhoto").value=myProfile.photoURL||"";
+ const posts=await db.collection("posts").where("ownerUid","==",me.uid).get();
+ $("postCount").textContent=posts.size;
+ $("myPosts").innerHTML=posts.docs.map(d=>`<div class="grid-item">${esc(d.data().caption||"Post")}</div>`).join("")||'<p class="muted">No posts yet.</p>';
+ const followers=await db.collection("follows").where("followingUid","==",me.uid).get();
+ const following=await db.collection("follows").where("followerUid","==",me.uid).get();
+ $("followerCount").textContent=followers.size;
+ $("followingCount").textContent=following.size;
+}
+async function saveProfile(){
+ const displayName=$("editName").value.trim();
+ const username=$("editUsername").value.trim().toLowerCase().replace(/^@/,"");
+ const bio=$("editBio").value.trim(),photoURL=$("editPhoto").value.trim();
+ if(!displayName||! /^[a-z0-9_]{3,20}$/.test(username))return msg("Enter a display name and valid username (3–20 letters, numbers or underscores).");
+ try{
+  await db.collection("users").doc(me.uid).update({displayName,username,bio,photoURL,updatedAt:Date.now()});
+  await loadProfile();msg("Profile updated.");
+ }catch(e){msg(e.message)}
+}
+
+// FOLLOW / EXPLORE
+async function searchMembers(){
+ const q=$("memberSearch").value.trim().toLowerCase();
+ if(q.length<2){$("memberResults").innerHTML="";return}
+ try{
+  const snap=await db.collection("users").where("username",">=",q).where("username","<=",q+"\uf8ff").limit(15).get();
+  $("memberResults").innerHTML=snap.docs.filter(d=>d.id!==me.uid).map(d=>{
+   const u=d.data();
+   return `<div class="card post-head">${avatarHTML(u)}<div style="flex:1"><strong>${esc(u.displayName)}</strong><br><small>@${esc(u.username)}</small></div><button class="btn secondary" onclick="followUser('${d.id}')">Follow</button><button class="btn secondary" onclick="openUserChat('${esc(u.username)}')">Message</button></div>`;
+  }).join("")||'<p class="muted">No members found.</p>';
+ }catch(e){$("memberResults").textContent=e.message}
+}
+async function followUser(uid){
+ const id=me.uid+"_"+uid,ref=db.collection("follows").doc(id);
+ try{
+  const s=await ref.get();
+  if(s.exists){await ref.delete();msg("Unfollowed.");}
+  else{
+   await ref.set({followerUid:me.uid,followingUid:uid,createdAt:Date.now()});
+   await db.collection("notifications").add({recipientUid:uid,senderUid:me.uid,text:myProfile.displayName+" followed you.",createdAt:Date.now(),read:false});
+   msg("Following.");
+  }
+  loadProfile();
+ }catch(e){msg(e.message)}
+}
+
+// MARKETPLACE
+async function createListing(){
+ const name=$("carName").value.trim(),price=$("carPrice").value.trim();
+ if(!name||!price||Number(price)<=0)return msg("Enter a car name and a valid price.");
+ try{
+  await db.collection("listings").add({
+   ownerUid:me.uid,ownerName:myProfile.displayName,name,
+   year:$("carYear").value.trim(),km:$("carKm").value,
+   specs:$("carSpecs").value.trim(),price:Number(price),
+   image:$("carPhoto").value.trim(),description:$("carDescription").value.trim(),
+   createdAt:Date.now()
+  });
+  ["carName","carYear","carKm","carSpecs","carPrice","carPhoto","carDescription"].forEach(id=>$(id).value="");
+  msg("Your listing has been published.");
+ }catch(e){msg(e.message)}
+}
+function loadListings(){
+ const q=($("carSearch").value||"").toLowerCase();
+ listen(db.collection("listings").orderBy("createdAt","desc").limit(50),snap=>{
+  const results=snap.docs.filter(d=>String(d.data().name||"").toLowerCase().includes(q));
+  $("listings").innerHTML=results.map(d=>{
+   const x=d.data();
+   return `<div class="card market-card">
+    <img src="${esc(x.image||"")}" onerror="this.style.display='none'" alt="Car">
+    <div><span class="tag">CAR MARKET</span><h3>${esc(x.name)}</h3>
+    <div class="price">₹${Number(x.price).toLocaleString("en-IN")}</div>
+    <p class="muted">${esc(x.year)} · ${esc(x.km)} KM</p>
+    <p>${esc(x.specs)}</p><p>${esc(x.description)}</p>
+    <small>Seller: ${esc(x.ownerName)}</small><br><br>
+    <button class="btn secondary" onclick="openUserChatById('${x.ownerUid}')">Message Seller</button>
+    ${x.ownerUid===me.uid?`<button class="btn danger" onclick="deleteListing('${d.id}')">Delete</button>`:""}
+    </div></div>`;
+  }).join("")||'<div class="empty">No car listings found.</div>';
+ });
+}
+async function deleteListing(id){
+ if(!confirm("Delete this listing?"))return;
+ try{await db.collection("listings").doc(id).delete()}catch(e){msg(e.message)}
+}
+
+// PRIVATE MESSAGES
+function chatIdFor(uid){return [me.uid,uid].sort().join("_")}
+async function openUserChat(username){
+ $("chatUsername").value=username;await startChat();
+}
+async function openUserChatById(uid){
+ if(uid===me.uid)return msg("This is your own listing.");
+ try{
+  const s=await db.collection("users").doc(uid).get();
+  if(!s.exists)return msg("Seller profile not found.");
+  await openUserChat(s.data().username);
+  showTab("messages");
+ }catch(e){msg(e.message)}
+}
+async function startChat(){
+ const username=$("chatUsername").value.trim().toLowerCase().replace(/^@/,"");
+ if(!username)return msg("Enter a username.");
+ try{
+  const snap=await db.collection("users").where("username","==",username).limit(1).get();
+  if(snap.empty)return msg("Member not found.");
+  const other=snap.docs[0];
+  if(other.id===me.uid)return msg("You cannot message yourself.");
+  const id=chatIdFor(other.id),ref=db.collection("chats").doc(id);
+  const existing=await ref.get();
+  if(!existing.exists)await ref.set({participants:[me.uid,other.id].sort(),createdAt:Date.now(),lastMessage:""});
+  openConversation(id,other.data().displayName);
+ }catch(e){msg(e.message)}
+}
+function openConversation(id,name){
+ currentChat=id;$("chatArea").style.display="block";$("chatTitle").textContent=name;
+ if(window.chatUnsub)window.chatUnsub();
+ window.chatUnsub=db.collection("chats").doc(id).collection("messages").orderBy("createdAt","asc").limit(100).onSnapshot(snap=>{
+  $("chatMessages").innerHTML=snap.docs.map(d=>{
+   const m=d.data();return `<div class="message ${m.senderUid===me.uid?"mine":""}">${esc(m.text)}</div>`;
+  }).join("");
+  $("chatMessages").scrollTop=$("chatMessages").scrollHeight;
+ },e=>msg(e.message));
+}
+function closeChat(){
+ if(window.chatUnsub)window.chatUnsub();
+ currentChat=null;$("chatArea").style.display="none";
+}
+async function sendMessage(){
+ const text=$("messageText").value.trim();
+ if(!currentChat||!text)return;
+ if(text.length>2000)return msg("Message is too long.");
+ try{
+  await db.collection("chats").doc(currentChat).collection("messages").add({senderUid:me.uid,text,createdAt:Date.now()});
+  await db.collection("chats").doc(currentChat).update({lastMessage:text,lastMessageAt:Date.now()});
+  $("messageText").value="";
+ }catch(e){msg(e.message)}
+}
+function loadChats(){
+ listen(db.collection("chats").where("participants","array-contains",me.uid),async snap=>{
+  const rows=[];
+  for(const d of snap.docs){
+   const other=d.data().participants.find(uid=>uid!==me.uid);
+   if(!other)continue;
+   const u=await db.collection("users").doc(other).get();
+   if(u.exists)rows.push(`<button class="btn secondary" onclick="openConversation('${d.id}','${esc(u.data().displayName)}')">${esc(u.data().displayName)} · ${esc(d.data().lastMessage||"Open chat")}</button>`);
+  }
+  $("chatList").innerHTML=rows.join("")||'<p class="muted">No conversations yet. Search for a member to start one.</p>';
+ });
+}
+
+// NOTIFICATIONS
+function loadNotifications(){
+ listen(db.collection("notifications").where("recipientUid","==",me.uid).limit(40),snap=>{
+  $("alerts").innerHTML=snap.docs.sort((a,b)=>(b.data().createdAt||0)-(a.data().createdAt||0)).map(d=>{
+   const n=d.data();return `<div class="card post-body">${esc(n.text||"New notification")}<br><small>${new Date(n.createdAt||Date.now()).toLocaleString()}</small></div>`;
+  }).join("")||'<div class="empty">No notifications yet.</div>';
+ });
+}
+
+// REPORTING
+async function reportItem(type,id){
+ const reason=prompt("Briefly explain why you are reporting this "+type+":");
+ if(!reason||!reason.trim())return;
+ try{
+  await db.collection("reports").add({reporterUid:me.uid,itemType:type,itemId:id,reason:reason.trim(),createdAt:Date.now(),status:"new"});
+  msg("Report submitted. Thank you.");
+ }catch(e){msg(e.message)}
+}
+
+$("messageText").addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
 </script>
 </body>
 </html>
